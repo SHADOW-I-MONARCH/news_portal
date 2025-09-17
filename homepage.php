@@ -1,4 +1,14 @@
 <?php include 'data.php'; ?>
+<?php
+session_start();
+
+// If not logged in, redirect to login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +17,11 @@
     <link rel="stylesheet" href="style2.css">
 </head>
 <body>
+    <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
+<p>Your role: <?php echo $_SESSION['role']; ?></p>
+
+<a href="logout.php">Logout</a>
+
     <div class="container">
         <h1>Tech News</h1>
         <?php foreach ($articles as $article): ?>
